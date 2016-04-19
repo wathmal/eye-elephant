@@ -4,6 +4,7 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './ElephantPage.css';
 import withStyles from '../../decorators/withStyles';
+import socketClient from 'socket.io-client';
 
 @withStyles(styles)
 class ElephantPage extends Component {
@@ -47,6 +48,9 @@ class ElephantPage extends Component {
   }
 
   componentDidMount() {
+
+    this.setupRealtime();
+
     const scale = 1;
     const width = 1024;
     const height= 768;
@@ -235,6 +239,14 @@ class ElephantPage extends Component {
 
 
     );
+  }
+
+  setupRealtime() {
+    const io = socketClient();
+    io.on('coordinate-change', (change) => {
+      console.log('new_val - ', JSON.stringify(change.new_val));
+    });
+    return io;
   }
 }
 
