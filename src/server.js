@@ -7,11 +7,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import Router from './routes';
 import Html from './components/Html';
+import http from 'http';
+import socketIO from 'socket.io';
+import RethinkDBService from './services/RethinkDBService';
 
 const server = global.server = express();
 
-server.set('port', (process.env.PORT || 5000));
+const httpServer = http.createServer(server);
+
+//server.set('port', (process.env.PORT || 5000));
+const port = 3006;
+server.set('port', port);
 server.use(express.static(path.join(__dirname, 'public')));
+
+var io = socketIO(httpServer);
 
 //
 // Register API middleware
@@ -46,11 +55,13 @@ server.get('*', async (req, res, next) => {
   }
 });
 
+RethinkDBService.liveUpdates(io);
+
 //
 // Launch the server
 // -----------------------------------------------------------------------------
 
-server.listen(server.get('port'), () => {
+httpServer.listen(server.get('port'), () => {
   /* eslint-disable no-console */
   console.log('The server is running at http://localhost:' + server.get('port'));
   if (process.send) {
