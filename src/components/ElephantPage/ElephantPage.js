@@ -333,10 +333,9 @@ class ElephantPage extends Component {
             {this.state.points}
           </div>
         </div>
+
+        <button onClick={this.handleNextButton}> Next</button>
       </div>
-
-
-
     );
   }
 
