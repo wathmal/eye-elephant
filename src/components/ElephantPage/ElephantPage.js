@@ -11,11 +11,17 @@ class ElephantPage extends Component {
   constructor() {
     super();
     this.state = {
-      attempt: 0
+      attempt: 1,
+      remainingTime: 15,
+      points: 0
     };
+
+    this.timer = null;
+    this.interval = null;
 
     this.gridSize =23;
     this.drawEye = this.drawEye.bind(this);
+    this.startTimer = this.startTimer.bind(this);
 
   }
 
@@ -86,10 +92,7 @@ class ElephantPage extends Component {
       }
     }
 
-
-
-
-    pointsMap[8][7] = 100;
+    pointsMap[eyeX][eyeY] = 100;
 
 
     console.log(gridColumns)
@@ -122,56 +125,114 @@ class ElephantPage extends Component {
       // add the layer to the stage
       stage.add(layer);
     };
-    imageObj.src = '/Screen-2-Elephant.png';
+    imageObj.src = '/Screen-2-Elephant-v4.png';
 
     // add the layer to the stage
     stage.add(layer);
 
-
-    // will be trigger only in components
-/*    elephant.on('click', () => {
-
-
-    });*/
-
-    // trigger every where
-
-
     stage.on('contentClick', () => {
-      // set selected state
-      this.setState({attempt: this.state.attempt+1});
+
+      if(this.state.attempt <= 3) {
+        clearInterval(this.interval);
+        clearTimeout(this.timer);
 
 
-      const pos = stage.getPointerPosition();
+        const pos = stage.getPointerPosition();
 
-      const xCord = Math.floor(pos.x / gridSize);
-      const yCord = Math.floor(pos.y / gridSize);
+        const xCord = Math.floor(pos.x / gridSize);
+        const yCord = Math.floor(pos.y / gridSize);
 
-      console.log('grid pos: '+ xCord +', '+yCord);
-      const dist = Math.sqrt(Math.pow((xCord-eyeX),2) + Math.pow((yCord-eyeY),2));
-      console.log('dist: '+dist);
-
-      console.log('points: '+ pointsMap[xCord][yCord]);
-
-      layer.add(this.drawEye(xCord, yCord));
-      layer.draw();
+        //console.log('grid pos: '+ xCord +', '+yCord);
+        //console.log('points: '+ pointsMap[xCord][yCord]);
 
 
-      // check for # attempts
-      if(this.state.attempt == 3){
-        alert('game over');
-        this.setState({attempt: 0});
 
+        // check for # attempts
+        const prevAttempt = this.state.attempt;
+
+
+          layer.add(this.drawEye(xCord, yCord));
+          layer.draw();
+          this.setState({points: this.state.points + pointsMap[xCord][yCord]})
+
+          this.setState({attempt: this.state.attempt + 1});
+
+
+
+
+        if((prevAttempt + 1) <= 3) {
+          this.startTimer();
+        }
+        else{
+          // do not start timer
+        }
+
+
+      }
+      else{
+        alert('game over')
       }
     });
 
+
+
+
+
+    // start timer
+    this.startTimer();
+  }
+
+  startTimer() {
+    this.setState({remainingTime: 15});
+
+    this.interval = setInterval(() => {
+      this.setState({remainingTime: this.state.remainingTime -1})
+    }, 1000);
+
+    this.timer = setTimeout(() =>{
+      const prevAttempt = this.state.attempt;
+
+      clearInterval(this.interval);
+      this.setState({attempt: this.state.attempt +1})
+
+      if((prevAttempt +1) >= 3){
+        // game over
+        alert('game over');
+      }
+      else{
+        this.startTimer();
+
+      }
+      this.setState({remainingTime: 15});
+    }, 15000)
   }
 
   render() {
     return (
-      <div id="container" className="canvas">
+      <div>
+        <div id="container" className="canvas">
 
+        </div>
+
+        <div className="timer">
+          <div><span className="attempts">{(this.state.attempt <= 3) ? this.state.attempt: 3}</span>&nbsp;&nbsp;Attempts</div>
+          <div><span className="time">{this.state.remainingTime}</span>&nbsp;&nbsp;Sec</div>
+          {
+/*
+            <h3>{this.state.points + ' points'}</h3>
+*/
+          }
+        </div>
+
+        <div className="points-box">
+          <div>Points</div>
+          <div className="points">
+            {this.state.points}
+          </div>
+        </div>
       </div>
+
+
 
     );
   }

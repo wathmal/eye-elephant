@@ -1,5 +1,51 @@
+body{
+  font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
+}
+
 #container canvas {
 
-  cursor: url("http://www.rw-designer.com/cursor-view/29768.png") 24 24, auto;
+  cursor: url("/29768.png") 24 24, auto;
 
+}
+
+.points-box{
+  position: absolute;
+  /* left: 50px; */
+  left: 30px;
+  z-index: 1000;
+  bottom: 30px;
+  text-align: left;
+  font-size: 30px;
+  color: #a4a4a4;
+}
+
+.points{
+  font-size: 80px;
+  color: #196231;
+  line-height: 80px;
+}
+
+.timer{
+  position: absolute;
+  /* left: 50px; */
+  right: 30px;
+  z-index: 1000;
+  top: 30px;
+  text-align: right;
+  font-size: 30px;
+  color: #a4a4a4;
+  line-height: 50px;
+}
+
+
+.attempts, .time{
+  font-size: 50px!important;
+}
+
+.attempts{
+  color: #b21605;
+}
+
+.time{
+  color: #ff8400;
 }
