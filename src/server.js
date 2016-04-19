@@ -21,6 +21,7 @@ server.use('/api/content', require('./api/content'));
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
+
 server.get('*', async (req, res, next) => {
   try {
     let statusCode = 200;
