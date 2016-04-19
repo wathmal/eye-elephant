@@ -24,7 +24,8 @@
     "socket.io": "^1.4.5",
     "socket.io-client": "^1.4.5",
     "source-map-support": "0.3.2",
-    "superagent": "1.4.0"
+    "superagent": "1.4.0",
+    "victor": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
