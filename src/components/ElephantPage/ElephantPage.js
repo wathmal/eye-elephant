@@ -5,6 +5,7 @@ import React, { PropTypes, Component } from 'react';
 import styles from './ElephantPage.css';
 import withStyles from '../../decorators/withStyles';
 import socketClient from 'socket.io-client';
+import { getUser, removeUser } from './../../core/CommonUtils';
 
 @withStyles(styles)
 class ElephantPage extends Component {
@@ -24,6 +25,7 @@ class ElephantPage extends Component {
     this.drawEye = this.drawEye.bind(this);
     this.startTimer = this.startTimer.bind(this);
 
+    this.handleNextButton= this.handleNextButton.bind(this);
   }
 
 
@@ -45,6 +47,11 @@ class ElephantPage extends Component {
 
     return rect;
 
+  }
+
+  handleNextButton(e) {
+    e.preventDefault();
+    this.savePlayer(getUser(), 100, 10 ,20);
   }
 
   componentDidMount() {
@@ -247,6 +254,27 @@ class ElephantPage extends Component {
       console.log('new_val - ', JSON.stringify(change.new_val));
     });
     return io;
+  }
+
+  savePlayer(username, points, x, y) {
+    $.ajax({
+      method: 'POST',
+      url: '/leaderboard/add',
+      data: {
+        username: username,
+        points: points,
+        x: x,
+        y: y }
+      ,
+      success: (data) => {
+        removeUser();
+        window.location.href = '/';
+        console.log("savePlayer success");
+      },
+      error: (xhr, status, err) => {
+        console.error('', status, err.toString());
+      }
+    });
   }
 }
 
