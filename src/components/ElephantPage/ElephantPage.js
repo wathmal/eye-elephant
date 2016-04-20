@@ -121,6 +121,10 @@ class ElephantPage extends Component {
         pointsMap[x][y] = Math.ceil(((gridColumns - dist) * 2) / 10) * 10;
 
 
+        if((x >= 0 && x < 3) && (y >= 0 && y < 3)) {
+          pointsMap[x][y] = 0;
+        }
+
         if ((x >= 6 && x <= 10) && (y >= 5 && y <= 9)) {
           pointsMap[x][y] = 80;
         }
@@ -128,6 +132,7 @@ class ElephantPage extends Component {
         if ((x >= 7 && x <= 9) && (y >= 6 && y <= 8)) {
           pointsMap[x][y] = 90;
         }
+
 
 
       }
@@ -193,8 +198,12 @@ class ElephantPage extends Component {
         var vec1 = new Victor(dx, dy);
         var dir = new Victor(directionX, directionY);
         directionX = 0; directionY = 0;
-        var angle = dir.horizontalAngle();
-        vec1 = vec1.rotate(angle);
+        var angle1 = dir.horizontalAngle();
+        var angle2 = vec1.horizontalAngle();
+
+        if(angle1 != 0){
+          vec1 = vec1.rotate((angle1 + angle2) / 2);
+        }
 
         dx = vec1.x;
         dy = vec1.y;
@@ -238,7 +247,7 @@ class ElephantPage extends Component {
     * Stage click listener
     * */
     stage.on('contentClick', () => {
-      if (this.state.attempt <= 3) {
+      /*if (this.state.attempt <= 3) {
       //if (true) {
         clearInterval(this.interval);
         clearTimeout(this.timer);
@@ -277,7 +286,7 @@ class ElephantPage extends Component {
       }
       else {
         alert('game over')
-      }
+      }*/
     });
 
 
@@ -300,7 +309,7 @@ class ElephantPage extends Component {
 
       if ((prevAttempt + 1) > 3) {
         // game over
-        alert('game over');
+        //alert('game over');
       }
       else {
         this.startTimer();
@@ -350,10 +359,10 @@ class ElephantPage extends Component {
       console.log('new_val - ', JSON.stringify(change.new_val));
 
 
-      let x = change.new_val.x;
-      let y = change.new_val.y;
-      x = ((x - 512) > 20)? (x - 512): 0;
-      y = ((y - 512) > 20)? (x - 512): 0;
+      let x = parseInt(change.new_val.x);
+      let y = parseInt(change.new_val.y);
+      x = (Math.abs(x - 512) > 20)? (x - 512): 0;
+      y = (Math.abs(y - 512) > 20)? (y - 512): 0;
 
 
       /*
@@ -361,7 +370,7 @@ class ElephantPage extends Component {
       * */
       directionX =x; directionY = y;
 
-      if(!change.new_val.clicked) {
+      if(change.new_val.clicked === "0") {
         if (this.state.attempt <= 3) {
           //if (true) {
           clearInterval(this.interval);
