@@ -39,7 +39,7 @@ class RethinkDBService {
         return new Promise((fulfill, reject) => {
             this.connect()
                 .then(conn => {
-                    r.table('leaderboard').limit(10).run(conn, function(err, cursor) {
+                    r.table('leaderboard').run(conn, function(err, cursor) {
                         if (err) {
                             reject(err);
                         }

@@ -134,19 +134,32 @@ class ElephantPage extends Component {
 
         // points based on distance to thr point
         const dist = Math.sqrt(Math.pow((x - eyeX), 2) + Math.pow((y - eyeY), 2));
-        pointsMap[x][y] = Math.ceil(((gridColumns - dist) * 2) / 10) * 10;
+        pointsMap[x][y] = Math.ceil(((gridColumns - dist) * 2) / 10) * 5;
 
 
-        if ((x >= 0 && x < 3) && (y >= 0 && y < 3)) {
+
+
+	if ((x >= 3 && x <= 13) && (y >= 2 && y <= 12)) {
           pointsMap[x][y] = 80;
         }
 
+	if ((x >= 4 && x <= 12) && (y >= 3 && y <= 11)) {
+          pointsMap[x][y] = 85;
+        }
         if ((x >= 6 && x <= 10) && (y >= 5 && y <= 9)) {
-          pointsMap[x][y] = 80;
+          pointsMap[x][y] = 90;
         }
 
         if ((x >= 7 && x <= 9) && (y >= 6 && y <= 8)) {
-          pointsMap[x][y] = 90;
+          pointsMap[x][y] = 95;
+        }
+
+        if ((x >= 0 && x < 3) && (y >= 0 && y < 3)) {
+          pointsMap[x][y] = 0;
+        }
+
+	if ((x >= 3 && x < 5) && (y >= 3 && y < 5)) {
+          pointsMap[x][y] = 10;
         }
 
 
@@ -390,7 +403,7 @@ class ElephantPage extends Component {
 
         }
         else {
-          alert('game over')
+          //('game over')
         }
       }
 

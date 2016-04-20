@@ -39,7 +39,7 @@ class RethinkDBService {
         return new Promise((fulfill, reject) => {
             this.connect()
                 .then(conn => {
-                    r.table('leaderboard').limit(10).run(conn, function(err, cursor) {
+                    r.table('leaderboard').run(conn, function(err, cursor) {
                         if (err) {
                             reject(err);
                         }
@@ -56,13 +56,13 @@ class RethinkDBService {
         });
     }
 
-    addToLeaderboard(name, points, x, y) {
+    addToLeaderboard(name, points) {
         return new Promise((fulfill, reject) => {
             this.connect()
                 .then(conn => {
                     r.table('leaderboard').insert(
                         {
-                            name: name, points: points, x:x, y:y
+                            name: name, points: points
                         })
                         .run(conn, function(err, result) {
                             if (err) {
