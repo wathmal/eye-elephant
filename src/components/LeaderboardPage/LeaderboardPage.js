@@ -44,9 +44,6 @@ class LeaderboardPage extends Component {
     }
 
     render() {
-        if (_.isEmpty(this.state.players) || this.state.players.length == 1) {
-            return null;
-        } else {
             const rows = this.state.players.map(function(player) {
                 return (<LeaderboardRow player = {player} key={player.rank} />);
             });
@@ -72,7 +69,6 @@ class LeaderboardPage extends Component {
                 </div>
             );
         }
-    }
 }
 
 export default LeaderboardPage;
