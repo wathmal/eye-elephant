@@ -1,0 +1,503 @@
+/* --------------------------------------------------
+    Table of Contents
+-----------------------------------------------------
+:: Typography
+:: Global
+:: Layout - Styles
+:: Bootstrap 3 Media Queries
+
+*/
+
+/*:: Typography*/
+@font-face {
+  font-family: Helvetica;
+  src: url('../fonts/helvetica/Helvetica.eot');
+  src: url('../fonts/helvetica/Helvetica.eot?#iefix') format('embedded-opentype'), url('../fonts/helvetica/Helvetica.svg#Helvetica') format('svg'), url('../fonts/helvetica/Helvetica.woff') format('woff'), url('../fonts/helvetica/Helvetica.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: HelveticaNeue;
+  src: url('../fonts/helveticaNeue/HelveticaNeueLTCom-Md.eot');
+  src: url('../fonts/helveticaNeue/HelveticaNeueLTCom-Md.eot?#iefix') format('embedded-opentype'), url('../fonts/helveticaNeue/HelveticaNeueLTCom-Md.ttf') format('truetype'), url('../fonts/helveticaNeue/HelveticaNeueLTCom-Md.woff') format('truetype'), url('../fonts/helveticaNeue/HelveticaNeueLTCom-Md.svg#HelveticaNeue-Md') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: HelveticaNeue-Lt;
+  src: url('../fonts/helveticaNeue/HelveticaNeueLTCom-Lt.eot');
+  src: url('../fonts/helveticaNeue/HelveticaNeueLTCom-Lt.eot?#iefix') format('embedded-opentype'), url('../fonts/helveticaNeue/HelveticaNeueLTCom-Lt.woff') format('woff'), url('../fonts/helveticaNeue/HelveticaNeueLTCom-Lt.ttf') format('truetype'), url('../fonts/helveticaNeue/HelveticaNeueLTCom-Lt.svg#HelveticaNeue-Lt') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Font Type Helvatica Neue STD */
+@font-face {
+  font-family: 'Helvetica Bold';
+  src: url('../fonts/HelveticaNeueLTStd-Bd/HelveticaNeueLTStd-Bd.eot?#iefix') format('embedded-opentype'),  url('../fonts/HelveticaNeueLTStd-Bd/HelveticaNeueLTStd-Bd.woff') format('woff'),  url('../fonts/HelveticaNeueLTStd-Bd/HelveticaNeueLTStd-Bd.ttf') format('truetype'),  url('../fonts/HelveticaNeueLTStd-Bd/HelveticaNeueLTStd-Bd.svg#Bariol') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica Medium';
+  src: url('../fonts/HelveticaNeueLTStd-Md/HelveticaNeueLTStd-Md.eot?#iefix') format('embedded-opentype'),  url('../fonts/HelveticaNeueLTStd-Md/HelveticaNeueLTStd-Md.woff') format('woff'),  url('../fonts/HelveticaNeueLTStd-Md/HelveticaNeueLTStd-Md.ttf') format('truetype'),  url('../fonts/HelveticaNeueLTStd-Md/HelveticaNeueLTStd-Md.svg#Bariol') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica Light';
+  src: url('../fonts/HelveticaNeueLTStd-Lt/HelveticaNeueLTStd-Lt.eot?#iefix') format('embedded-opentype'),  url('../fonts/HelveticaNeueLTStd-Lt/HelveticaNeueLTStd-Lt.woff') format('woff'),  url('../fonts/HelveticaNeueLTStd-Lt/HelveticaNeueLTStd-Lt.ttf') format('truetype'),  url('../fonts/HelveticaNeueLTStd-Lt/HelveticaNeueLTStd-Lt.svg#Bariol') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica UltraLight';
+  src: url('../fonts/HelveticaNeueLTStd-UltLt/HelveticaNeueLTStd-UltLt.eot?#iefix') format('embedded-opentype'),  url('../fonts/HelveticaNeueLTStd-UltLt/HelveticaNeueLTStd-UltLt.woff') format('woff'),  url('../fonts/HelveticaNeueLTStd-UltLt/HelveticaNeueLTStd-UltLt.ttf') format('truetype'),  url('../fonts/HelveticaNeueLTStd-UltLt/HelveticaNeueLTStd-UltLt.svg#Bariol') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Helvetica Thin';
+  src: url('../fonts/HelveticaNeueLTStd-Th/HelveticaNeueLTStd-Th.eot?#iefix') format('embedded-opentype'),  url('../fonts/HelveticaNeueLTStd-Th/HelveticaNeueLTStd-Th.woff') format('woff'),  url('../fonts/HelveticaNeueLTStd-Th/HelveticaNeueLTStd-Th.ttf') format('truetype'),  url('../fonts/HelveticaNeueLTStd-Th/HelveticaNeueLTStd-Th.svg#Bariol') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*:: Global*/
+body {
+  font-family: "Helvetica Light";
+}
+h1 {
+  font-size: 1.714em;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+h1.inside {
+  display: inline-block;
+  font-size: 0.92em;
+  margin-top: 4px;
+}
+h2 {
+  font-size: 1.286em;
+}
+h5 {
+  font-size: 1.056em;
+}
+
+a {
+  color: #5ab1e8;
+}
+a:hover {
+  color: #268ccc;
+}
+a:active {
+  color: #1377b6;
+}
+.logo {
+  background: url('../images/cake-logo.png') left no-repeat;
+  max-width: 135px;
+  height: 32px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  background-size: cover;
+}
+.logo-inside {
+  background: url('../images/cake-logo.png') left no-repeat;
+  width: 71px;
+  height: 17px;
+  margin-top: 0px;
+  margin-right: 15px;
+  background-size: cover;
+  display: inline-block;
+}
+.top-thin-bar {
+  background: #F2700E;
+  width: 100%;
+  height: 10px;
+}
+.btn:focus {
+  outline: 0 !important;
+}
+.modal-body {
+  padding-top: 30px;
+}
+.form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+  padding-top: 10px;
+}
+/*-- Nav Bar --*/
+.navbar-default .navbar-nav>.active>a {
+  color: #FFFFFF;
+  background-image: -webkit-linear-gradient(top, #5ab1e8 0, #5ab1e8 100%);
+  background-image: -o-linear-gradient(top, #5ab1e8 0, #5ab1e8 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5ab1e8), to(#5ab1e8));
+  background-image: linear-gradient(to bottom, #5ab1e8 0, #5ab1e8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5ab1e845', endColorstr='#5ab1e845', GradientType=0);
+  background-repeat: repeat-x;
+  -webkit-box-shadow: inset 0 3px 9px rgba(0,0,0,.075);
+  box-shadow: inset 0 3px 9px rgba(0,0,0,.075);
+}
+.navbar-default .navbar-nav>.active>a:hover {
+  color: #e4ffe4;
+}
+.navbar-default .navbar-nav>.active>a:focus {
+  color: #ffffff;
+}
+.navbar {
+  border-top: 0 none;
+}
+.nav-tabs > li.active > a {
+  outline: 0 none;
+}
+.menu-seperator span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 10px;
+  border-right: 1px solid #C2C2C2;
+  height: 28px;
+}
+.copyright-note {
+  font-size: 0.857em;
+}
+.copyright-note.inside {
+  font-size: 0.857em;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.sec-ico {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin: 10px 10px 0 10px;
+  font-size: 1.3em;
+  vertical-align: bottom;
+}
+.data-table {
+  padding-left: 10px;
+}
+.svr-hlth-dshbrd h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.tab-heading {
+  font-size: 1.6em;
+  color: #5ab1e8;
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 5px;
+  padding-left: 5px;
+}
+.tab-sub-heading {
+  font-size: 1.3em;
+  color: #000000;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-left: 5px;
+}
+.incident-heading {
+  font-size: 1.2em;
+}
+.ico-incident {
+  margin-right: 15px;
+  display: table-cell;
+}
+.incident-heading blockquote {
+  display: table-cell;
+  margin: 0;
+  padding: 0 0 0 15px;
+  border-left: 0;
+  font-size: inherit;
+}
+.incident-heading-msg {
+  display: inline-block;
+}
+.tab-content>.active {
+  padding: 10px;
+  background: #fff;
+}
+.svr-hlth-dshbrd table .svr-name-td {
+  word-break: break-all;
+}
+/* icon statusus */
+.ico-status {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  font-size: 1.35em;
+  text-decoration: none;
+}
+.ico-status:hover {
+  text-decoration: none;
+}
+/* Status Icons - Static */
+.glyphicon.glyphicon-ok-sign {
+  color: #5ab1e8;
+}
+.glyphicon.glyphicon-info-sign {
+  color: #0363D0;
+}
+.glyphicon.glyphicon-exclamation-sign {
+  color: #FFAA00;
+}
+.glyphicon.glyphicon-minus-sign {
+  color: #D0171A;
+}
+.table-role .ico-status.glyphicon.glyphicon-ok {
+  color: #ACD390;
+}
+.table-role .ico-status.glyphicon.glyphicon-remove {
+  color: #E29FA0;
+}
+.act-btns {
+  display: inline-block;
+  min-width: 64px;
+}
+.btn-delete {
+  margin-left: 20px;
+  color: #D0171A;
+  display: inline-block;
+}
+.btn-delete:hover {
+  margin-left: 20px;
+  color: #8C0002;
+  display: inline-block;
+}
+/* Status Filter - Pagination */
+.status-filter {
+  margin-bottom: 20px;
+}
+#year-table .dp-item {
+  padding-top: 21px !important;
+}
+.arw-left, .arw-right {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: #80c468;
+  text-decoration: none;
+}
+.arw-left:hover, .arw-right:hover {
+  color: #94e279;
+  text-decoration: none;
+}
+.arw-left:active, .arw-right:active {
+  color: #85ca5d;
+  text-decoration: none;
+}
+.arw-left.inactive, .arw-right.inactive {
+  color: #B5B5B5;
+  text-decoration: none;
+}
+/* Legend */
+.legend {
+  margin: 20px 0 0 0;
+  padding: 0 10px 0 10px;
+  background: #ffffff;
+  border-radius: 5px;
+}
+.legend table {
+  margin-bottom: 0;
+}
+.legend table td {
+  border-top: 0 none !important;
+}
+.legend table td .ico-status {
+  margin-right: 10px;
+}
+.legend table td .legend-txt {
+  margin-top: 2px;
+  vertical-align: top;
+  display: inline-block;
+}
+/* Form Control */
+.form-horizontal .control-label {
+  color: #5ab1e8;
+}
+.report .form-horizontal .control-label {
+  margin-bottom: 0;
+  padding-top: 0;
+}
+.report .form-control-static {
+  padding-top: 0;
+}
+.usage-graph {
+  box-sizing: border-box;
+  background-size: cover;
+  width: 90%;
+  height: auto;
+}
+.nav-content .form-group.inside {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.grouped {
+  padding-bottom: 20px;
+}
+/*-- Server Admin Data Input --*/
+.server-data-inputs .form-group {
+}
+/*-- Admin --*/
+.ico-user {
+  margin-right: 10px;
+  color: #5ab1e8;
+}
+.ico-logout {
+  margin-right: 10px;
+}
+/*-- Nav Content - Content related to main nav bar --*/
+.nav-content {
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #ffffff;
+}
+.nav-content:last {
+  margin-bottom: 10px;
+}
+.content-heading {
+  font-size: 1.6em;
+  color: #5ab1e8;
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  padding-left: 5px;
+}
+.content-sub-heading {
+  font-size: 1.3em;
+  color: #000000;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.sub-title {
+  color: slategrey;
+}
+.col-action {
+  width: 64px;
+}
+.btn-new-rec {
+  margin-bottom: 10px;
+}
+/*-- Incident Styles --*/
+.select-graph input[type=radio], .select-graph input[type=checkbox] {
+  margin-top: 0 !important;
+}
+.form-control {
+  padding: 6px 8px;
+}
+.form-control:focus {
+  border-color: #5ab1e8;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(148,226,121,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(148,226,121,.6);
+}
+/*-- User Styles --*/
+.select-roles input[type=radio], .select-roles input[type=checkbox] {
+  margin-top: 0 !important;
+}
+
+.main-sprnt {
+  margin-bottom: 30px;
+}
+.badge.special {
+  background: #F2700E;
+}
+.badge.link {
+  background: #5ab1e8;
+}
+a.badge.link:hover {
+  background: #268ccc;
+}
+a.badge.link:active {
+  background: #1377b6;
+}
+
+.sprnt-prgrs {
+  margin-bottom: 20px;
+}
+
+.list-highlight {
+  background-color: #edf7fe;
+}
+.option-selected {
+  background-color: #edf7fe;
+}
+.txt-bld {
+  font-family: "Helvetica Bold"
+}
+.txt-lft {
+  text-align: left;
+}
+.txt-rht {
+  text-align: right;
+}
+.title-space {
+  margin-top: 10px;
+  padding: 10px;
+}
+.bottom-buffer {
+  margin-bottom: 20px;
+}
+.buffer-less {
+  margin-bottom: 0;
+}
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+}
+
+@media only screen and (max-width : 320px) {
+  .legend table td .ico-status {
+    font-size: 1.2em;
+    margin-right: 0;
+  }
+  .legend table td .legend-txt {
+    font-size: 0.85em;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .usage-graph {
+    width: 100%;
+  }
+  .dly-svr-sts-table {
+    /*font-size: 0.9em;*/
+  }
+  .server-data-inputs .form-group {
+    margin-bottom: 20px;
+  }
+}
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  /*.nav-content .form-group {
+    padding-bottom: 5px;
+  }*/
+}
+
+@media only screen and (max-width : 768px) {
+  /*.grouped .form-group {
+    margin-bottom: 10px;
+  }*/
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+}
+
+/* Set padding only for Webkit Browsers */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+}

@@ -1,0 +1,7 @@
+body {
+    background: url("../../public/images/img-bg-leader-board.png") no-repeat center center fixed;
+}
+
+.leaderboard-table {
+    vertical-align: middle;
+}

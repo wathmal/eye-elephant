@@ -3,6 +3,7 @@
  */
 import r from 'rethinkdb';
 var AppConstants = require('../constants/AppConstants');
+import { formatLeaderboard } from './../core/CommonUtils';
 
 class RethinkDBService {
     constructor() {
@@ -35,30 +36,43 @@ class RethinkDBService {
     }
 
     getLeaderboard() {
-        this.connect()
-            .then(conn => {
-                r.table('leaderboard').run(conn, function(err, cursor) {
-                    if (err) throw err;
-                    cursor.toArray(function(err, result) {
-                        if (err) throw err;
-                        console.log(JSON.stringify(result, null, 2));
+        return new Promise((fulfill, reject) => {
+            this.connect()
+                .then(conn => {
+                    r.table('leaderboard').limit(10).run(conn, function(err, cursor) {
+                        if (err) {
+                            reject(err);
+                        }
+                        cursor.toArray(function(err, result) {
+                            if (err) {
+                                reject(err);
+                            } else {
+                                console.log(JSON.stringify(result, null, 2));
+                                fulfill(formatLeaderboard(result));
+                            }
+                        });
                     });
                 });
-            });
+        });
     }
 
     addToLeaderboard(name, points, x, y) {
-        this.connect()
-            .then(conn => {
-                r.table('leaderboard').insert(
-                    {
-                        name: name, points: points, x:x, y:y
-                    })
-                    .run(conn, function(err, result) {
-                    if (err) throw err;
-                    console.log(JSON.stringify(result, null, 2));
-                })
-            });
+        return new Promise((fulfill, reject) => {
+            this.connect()
+                .then(conn => {
+                    r.table('leaderboard').insert(
+                        {
+                            name: name, points: points, x:x, y:y
+                        })
+                        .run(conn, function(err, result) {
+                            if (err) {
+                                reject(err);
+                            }
+                            console.log(JSON.stringify(result, null, 2));
+                            fulfill(result);
+                        })
+                });
+        });
     }
 }
 

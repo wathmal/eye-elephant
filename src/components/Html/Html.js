@@ -38,15 +38,24 @@ class Html extends Component {
         <meta name="description" content={this.props.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+        <link href="/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="/css/bootstrap-theme.min.css" rel="stylesheet" />
+
         <style id="css" dangerouslySetInnerHTML={{__html: this.props.css}} />
 
         <script src="/konva.min.js" />
+
+        <link href="/css/style.css" rel="stylesheet" />
+
+        <script src="/js/jquery.min.js"></script>
 
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{__html: this.props.body}} />
         <script src="/app.js"></script>
         <script dangerouslySetInnerHTML={this.trackingCode()} />
+        <script src="/js/bootstrap.min.js"></script>
       </body>
       </html>
     );

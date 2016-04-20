@@ -10,6 +10,7 @@ import Html from './components/Html';
 import http from 'http';
 import socketIO from 'socket.io';
 import RethinkDBService from './services/RethinkDBService';
+import bodyParser from 'body-parser';
 
 const server = global.server = express();
 
@@ -18,6 +19,10 @@ const httpServer = http.createServer(server);
 //server.set('port', (process.env.PORT || 5000));
 const port = 3006;
 server.set('port', port);
+
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
+
 server.use(express.static(path.join(__dirname, 'public')));
 
 var io = socketIO(httpServer);
@@ -26,6 +31,28 @@ var io = socketIO(httpServer);
 // Register API middleware
 // -----------------------------------------------------------------------------
 server.use('/api/content', require('./api/content'));
+
+// Get leaderboard
+server.get('/leaderboard/all', (req, res, err) => {
+  console.log(req.body);
+  RethinkDBService.getLeaderboard().then(response => {
+    res.send(response);
+  }, error => {
+    console.log('server ' + error);
+    res.sendStatus(error);
+  });
+});
+
+// Sign in api
+server.post('/leaderboard/add', (req, res, err) => {
+  console.log(req.body);
+  RethinkDBService.addToLeaderboard(req.body.username, req.body.points, req.body.x, req.body.y).then(response => {
+    res.send(response);
+  }, error => {
+    console.log('server ' + error);
+    res.sendStatus(error);
+  });
+});
 
 //
 // Register server-side rendering middleware
