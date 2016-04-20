@@ -55,7 +55,7 @@ class ElephantPage extends Component {
 
   handleNextButton(e) {
     e.preventDefault();
-    this.savePlayer(getUser(), 100, 10 ,20);
+    this.savePlayer(getUser(), this.state.points);
   }
 
   componentDidMount() {
@@ -93,9 +93,9 @@ class ElephantPage extends Component {
     /*
     * Random ball logic 2
     * */
-    var x = width/2;
+    var x = 800;
     var y = height/2;
-    var dx = 15;
+    var dx = -15;
     var dy = -15;
     var ballRadius = this.gridSize / 2;
 
@@ -404,15 +404,14 @@ class ElephantPage extends Component {
     return io;
   }
 
-  savePlayer(username, points, x, y) {
+  savePlayer(username, points) {
     $.ajax({
       method: 'POST',
       url: '/leaderboard/add',
       data: {
         username: username,
         points: points,
-        x: x,
-        y: y }
+        }
       ,
       success: (data) => {
         removeUser();
