@@ -8,7 +8,7 @@ import socketClient from 'socket.io-client';
 import { getUser, removeUser } from './../../core/CommonUtils';
 var Victor = require('victor');
 var layer;
-var directionX = 0, directionY = 0;
+var directionX =0, directionY = 0;
 const pointsMap = [];
 var hexagon;
 
@@ -30,7 +30,7 @@ class ElephantPage extends Component {
     this.drawEye = this.drawEye.bind(this);
     this.startTimer = this.startTimer.bind(this);
 
-    this.handleNextButton = this.handleNextButton.bind(this);
+    this.handleNextButton= this.handleNextButton.bind(this);
   }
 
 
@@ -79,30 +79,33 @@ class ElephantPage extends Component {
 
 
     /*
-     * random ball logic
-     * */
+    * random ball logic
+    * */
+
+/*
+    var dx = 0;
+    var dy = 0;
+    var delta = 5; // range (from 0) of possible dx or dy change
+    var max = 15; // maximum dx or dy values
+*/
+
 
     /*
-     var dx = 0;
-     var dy = 0;
-     var delta = 5; // range (from 0) of possible dx or dy change
-     var max = 15; // maximum dx or dy values
-     */
-
-
-    /*
-     * Random ball logic 2
-     * */
+    * Random ball logic 2
+    * */
     var x = 800;
-    var y = height / 2;
+    var y = height/2;
     var dx = 15;
     var dy = 15;
     var ballRadius = this.gridSize / 2;
 
 
+
+
+
     /*
-     * Generation of points map based on distance
-     * */
+    * Generation of points map based on distance
+    * */
     // init map
     for (var x = 0; x <= gridColumns; x++) {
       pointsMap[x] = [];
@@ -137,8 +140,8 @@ class ElephantPage extends Component {
     console.log(gridRows);
 
     /*
-     * Konva Init
-     * */
+    * Konva Init
+    * */
     var stage = new Konva.Stage({
       container: 'container',
       width: width * scale,
@@ -146,6 +149,7 @@ class ElephantPage extends Component {
     });
 
     layer = new Konva.Layer();
+
 
 
     var imageObj = new Image();
@@ -181,34 +185,37 @@ class ElephantPage extends Component {
       stage.add(layer);
 
 
-      var anim = new Konva.Animation(function (frame) {
+
+
+
+      var anim = new Konva.Animation(function(frame) {
 
         var vec1 = new Victor(dx, dy);
         var dir = new Victor(directionX, directionY);
-
+        
         var angle = dir.horizontalAngle();
-        var angle1 = vec1.horizontalAngle();
+	var angle1 = vec1.horizontalAngle();
+        
+	//vec1= new Victor(0,0); 
+	if(angle != 0){	
+		//vec1 = vec1.rotate(0-angle);
+		vec1 = vec1.rotate((angle+ angle1)/2);
 
-        //vec1= new Victor(0,0);
-        if (angle != 0) {
-          //vec1 = vec1.rotate(0-angle);
-          vec1 = vec1.rotate((angle + angle1) / 2);
-
-          //console.log(vec1);
-        }
+console.log(vec1);
+	}
 
 
-        directionX = 0;
-        directionY = 0;
+	directionX = 0; directionY = 0;
 
         dx = vec1.x;
         dy = vec1.y;
 
 
-        if (x + dx > width - ballRadius || x + dx < ballRadius) {
+
+        if(x + dx > width-ballRadius || x + dx < ballRadius) {
           dx = -dx;
         }
-        if (y + dy > height - ballRadius || y + dy < ballRadius) {
+        if(y + dy > height-ballRadius || y + dy < ballRadius) {
           dy = -dy;
         }
 
@@ -218,19 +225,32 @@ class ElephantPage extends Component {
 
         hexagon.setX(x);
         hexagon.setY(y);
-      }, layer);
+    }, layer);
 
       anim.start();
     };
     imageObj.src = '/Screen-2-Elephant-v4.png';
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     /*
-     * Stage click listener
-     * */
+    * Stage click listener
+    * */
     stage.on('contentClick', () => {
       if (this.state.attempt <= 3) {
-        //if (true) {
+      //if (true) {
         clearInterval(this.interval);
         clearTimeout(this.timer);
 
@@ -239,8 +259,9 @@ class ElephantPage extends Component {
         const yCord = Math.floor(hexagon.getY() / gridSize);
 
 
-        directionX = -1;
-        directionY = 1;
+
+        directionX= -1;
+        directionY= 1;
 
         const prevAttempt = this.state.attempt;
 
@@ -342,18 +363,17 @@ class ElephantPage extends Component {
 
       let x = parseInt(change.new_val.x);
       let y = parseInt(change.new_val.y);
-      x = (Math.abs((x - 512)) > 20) ? (x - 512) : 0;
-      y = (Math.abs((y - 512)) > 20) ? (y - 512) : 0;
+      x = (Math.abs((x - 512)) > 20)? (x - 512): 0;
+      y = (Math.abs((y - 512)) > 20)? (y - 512): 0;
 
 
       /*
-       * change directionX & directionY according to this.
-       * */
-      directionX = x;
-      directionY = y;
-      console.log(x + ' ' + y);
+      * change directionX & directionY according to this.
+      * */
+      directionX =x; directionY = y;
+	console.log(x+' '+ y);
 
-      if (change.new_val.clicked === "0") {
+      if(change.new_val.clicked === "0") {
         if (this.state.attempt <= 3) {
           //if (true) {
           clearInterval(this.interval);
@@ -403,7 +423,7 @@ class ElephantPage extends Component {
       data: {
         username: username,
         points: points,
-      }
+        }
       ,
       success: (data) => {
         removeUser();

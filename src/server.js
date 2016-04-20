@@ -82,7 +82,7 @@ server.get('*', async (req, res, next) => {
   }
 });
 
-//RethinkDBService.liveUpdates(io);
+RethinkDBService.liveUpdates(io);
 
 //
 // Launch the server
