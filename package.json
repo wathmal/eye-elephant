@@ -20,6 +20,7 @@
     "normalize.css": "3.0.3",
     "react": "0.14.0-rc1",
     "react-dom": "0.14.0-rc1",
+    "react-modal-dialog": "^2.0.0",
     "react-rethinkdb": "^0.5.5",
     "react-routing": "0.0.4",
     "rethinkdb": "^2.3.0",

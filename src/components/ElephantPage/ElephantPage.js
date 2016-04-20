@@ -6,12 +6,15 @@ import styles from './ElephantPage.css';
 import withStyles from '../../decorators/withStyles';
 import socketClient from 'socket.io-client';
 import { getUser, removeUser } from './../../core/CommonUtils';
+import {ModalContainer, ModalDialog} from 'react-modal-dialog';
+
+
 var Victor = require('victor');
 var layer;
 var directionX = 0, directionY = 0;
 const pointsMap = [];
 var hexagon;
-
+const st = ['st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th', 'th', 'th'];
 @withStyles(styles)
 class ElephantPage extends Component {
 
@@ -20,7 +23,8 @@ class ElephantPage extends Component {
     this.state = {
       attempt: 1,
       remainingTime: 15,
-      points: 0
+      points: 0,
+      isShowingModal: false,
     };
 
     this.timer = null;
@@ -31,6 +35,8 @@ class ElephantPage extends Component {
     this.startTimer = this.startTimer.bind(this);
 
     this.handleNextButton = this.handleNextButton.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
 
@@ -55,9 +61,18 @@ class ElephantPage extends Component {
 
   handleNextButton(e) {
     e.preventDefault();
-    this.savePlayer(getUser(), this.state.points);
+    window.location.href = '/';
+
   }
 
+
+  handleClick (){
+    this.setState({isShowingModal: true});
+    this.savePlayer(getUser(), this.state.points);
+
+  }
+  
+  handleClose = () => this.setState({isShowingModal: false})
   componentDidMount() {
 
     this.setupRealtime();
@@ -117,6 +132,10 @@ class ElephantPage extends Component {
         const dist = Math.sqrt(Math.pow((x - eyeX), 2) + Math.pow((y - eyeY), 2));
         pointsMap[x][y] = Math.ceil(((gridColumns - dist) * 2) / 10) * 10;
 
+
+        if ((x >= 0 && x < 3) && (y >= 0 && y < 3)) {
+          pointsMap[x][y] = 80;
+        }
 
         if ((x >= 6 && x <= 10) && (y >= 5 && y <= 9)) {
           pointsMap[x][y] = 80;
@@ -229,45 +248,7 @@ class ElephantPage extends Component {
      * Stage click listener
      * */
     stage.on('contentClick', () => {
-      if (this.state.attempt <= 3) {
-        //if (true) {
-        clearInterval(this.interval);
-        clearTimeout(this.timer);
 
-
-        const xCord = Math.floor(hexagon.getX() / gridSize);
-        const yCord = Math.floor(hexagon.getY() / gridSize);
-
-
-        directionX = -1;
-        directionY = 1;
-
-        const prevAttempt = this.state.attempt;
-
-
-        layer.add(this.drawEye(xCord, yCord));
-        layer.draw();
-        this.setState({points: this.state.points + pointsMap[xCord][yCord]})
-
-        this.setState({attempt: this.state.attempt + 1});
-
-
-        if ((prevAttempt + 1) <= 3) {
-          this.startTimer();
-        }
-        else {
-          // do not start timer
-          setTimeout(() => {
-            alert('game over');
-
-          }, 1000);
-        }
-
-
-      }
-      else {
-        alert('game over')
-      }
     });
 
 
@@ -290,7 +271,8 @@ class ElephantPage extends Component {
 
       if ((prevAttempt + 1) > 3) {
         // game over
-        alert('game over');
+        //alert('game over');
+        this.handleClick();
       }
       else {
         this.startTimer();
@@ -308,8 +290,8 @@ class ElephantPage extends Component {
         </div>
 
         <div className="timer">
-          <div><span className="attempts">{(this.state.attempt <= 3) ? this.state.attempt : 3}</span>&nbsp;&nbsp;
-            Attempts
+          <div><span className="attempts">{(this.state.attempt <= 3) ? this.state.attempt : 3 } <sup>{st[this.state.attempt-1]}</sup></span>&nbsp;&nbsp;
+            Attempt
           </div>
           <div><span className="time">{this.state.remainingTime}</span>&nbsp;&nbsp;Sec</div>
           {
@@ -326,7 +308,22 @@ class ElephantPage extends Component {
           </div>
         </div>
 
-        <button onClick={this.handleNextButton}> Next</button>
+        {
+          this.state.isShowingModal &&
+          <ModalContainer onClose={this.handleClose}>
+            <ModalDialog onClose={this.handleClose}>
+              <div className="center">
+              <h1>Dialog Content</h1>
+              <p>More Content. Anything goes here</p>
+              <div className="points">
+                {this.state.points}
+              </div>
+              <button onClick={this.handleNextButton}> Next</button>
+
+              </div>
+            </ModalDialog>
+          </ModalContainer>
+        }
       </div>
 
 
@@ -380,7 +377,9 @@ class ElephantPage extends Component {
           else {
             // do not start timer
             setTimeout(() => {
-              alert('game over');
+              //alert('game over');
+              this.handleClick();
+
 
             }, 1000);
           }
@@ -407,7 +406,6 @@ class ElephantPage extends Component {
       ,
       success: (data) => {
         removeUser();
-        window.location.href = '/';
         console.log("savePlayer success");
       },
       error: (xhr, status, err) => {
