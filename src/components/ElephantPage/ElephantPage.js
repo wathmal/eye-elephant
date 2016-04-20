@@ -6,7 +6,10 @@ import styles from './ElephantPage.css';
 import withStyles from '../../decorators/withStyles';
 import socketClient from 'socket.io-client';
 var Victor = require('victor');
-
+var layer;
+var directionX =0, directionY = 0;
+const pointsMap = [];
+var hexagon;
 
 @withStyles(styles)
 class ElephantPage extends Component {
@@ -91,13 +94,11 @@ class ElephantPage extends Component {
 
 
 
-    var directionX =0, directionY = 0;
-    var hexagon;
+
 
     /*
     * Generation of points map based on distance
     * */
-    const pointsMap = [];
     // init map
     for (var x = 0; x <= gridColumns; x++) {
       pointsMap[x] = [];
@@ -140,7 +141,7 @@ class ElephantPage extends Component {
       height: height * scale
     });
 
-    var layer = new Konva.Layer();
+    layer = new Konva.Layer();
 
 
 
@@ -338,6 +339,58 @@ class ElephantPage extends Component {
     const io = socketClient();
     io.on('coordinate-change', (change) => {
       console.log('new_val - ', JSON.stringify(change.new_val));
+
+
+      let x = change.new_val.x;
+      let y = change.new_val.y;
+      x = ((x - 512) > 20)? (x - 512): 0;
+      y = ((y - 512) > 20)? (x - 512): 0;
+
+
+      /*
+      * change directionX & directionY according to this.
+      * */
+      directionX =x; directionY = y;
+
+      if(!change.new_val.clicked) {
+        if (this.state.attempt <= 3) {
+          //if (true) {
+          clearInterval(this.interval);
+          clearTimeout(this.timer);
+
+
+          const xCord = Math.floor(hexagon.getX() / gridSize);
+          const yCord = Math.floor(hexagon.getY() / gridSize);
+
+
+          const prevAttempt = this.state.attempt;
+
+
+          layer.add(this.drawEye(xCord, yCord));
+          layer.draw();
+          this.setState({points: this.state.points + pointsMap[xCord][yCord]})
+
+          this.setState({attempt: this.state.attempt + 1});
+
+
+          if ((prevAttempt + 1) <= 3) {
+            this.startTimer();
+          }
+          else {
+            // do not start timer
+            setTimeout(() => {
+              alert('game over');
+
+            }, 1000);
+          }
+
+
+        }
+        else {
+          alert('game over')
+        }
+      }
+
     });
     return io;
   }
