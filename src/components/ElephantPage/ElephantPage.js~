@@ -201,7 +201,7 @@ class ElephantPage extends Component {
 		//vec1 = vec1.rotate(0-angle);
 		vec1 = vec1.rotate((angle+ angle1)/2);
 
-		//console.log(vec1);
+console.log(vec1);
 	}
 
 

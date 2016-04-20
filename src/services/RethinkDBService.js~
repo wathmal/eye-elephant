@@ -56,13 +56,13 @@ class RethinkDBService {
         });
     }
 
-    addToLeaderboard(name, points) {
+    addToLeaderboard(name, points, x, y) {
         return new Promise((fulfill, reject) => {
             this.connect()
                 .then(conn => {
                     r.table('leaderboard').insert(
                         {
-                            name: name, points: points
+                            name: name, points: points, x:x, y:y
                         })
                         .run(conn, function(err, result) {
                             if (err) {
