@@ -23,9 +23,9 @@ class LeaderboardRow extends Component {
     render() {
         return (
             <tr className='list-highlight'>
-                <td>{this.props.player.rank}</td>
-                <td className="txt-rht">{this.props.player.name}</td>
-                <td className="txt-rht">{this.props.player.points}</td>
+                <td className="txt-rht leaderboard-rank-col">{this.props.player.rank}.</td>
+                <td className="txt-lft leaderboard-name-col">{this.props.player.name}</td>
+                <td className="txt-lft leaderboard-points-col">{this.props.player.points}</td>
             </tr>
         );
     }

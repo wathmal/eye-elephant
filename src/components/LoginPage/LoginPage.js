@@ -31,12 +31,9 @@ class LoginPage extends Component {
     return (
         <div className="container sign-in">
           <form className="form-signin" role="form" id="admin-signup">
-            <div className="logo"></div>
-            <h1>Project Dashboard</h1>
-            <h2 className="form-signin-heading">Please sign in</h2>
-            <input type="text" ref="username" className="form-control" placeholder="User Name" required="" autofocus />
+            <input type="text" ref="username" className="form-control signin-input-name" placeholder="User Name" required="" autofocus />
 
-            <button className="btn btn-lg btn-primary btn-block" onClick={this.handleStartButton} >Sign In</button>
+            <button className="btn btn-lg btn-primary btn-block signin-button" onClick={this.handleStartButton} >wdrïNh</button>
           </form>
         </div>
     );

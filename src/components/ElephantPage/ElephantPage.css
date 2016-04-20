@@ -17,12 +17,15 @@ body{
   text-align: left;
   font-size: 30px;
   color: #a4a4a4;
+  font-family: FMSamantha;
+  -webkit-font-smoothing: antialiased;
 }
 
 .points{
   font-size: 80px;
   color: #196231;
   line-height: 80px;
+  text-align: center;
 }
 
 .timer{
@@ -35,6 +38,8 @@ body{
   font-size: 30px;
   color: #a4a4a4;
   line-height: 50px;
+  font-family: FMSamantha;
+  -webkit-font-smoothing: antialiased;
 }
 
 
@@ -48,4 +53,34 @@ body{
 
 .time{
   color: #ff8400;
+}
+
+.modal-text {
+  font-family: FMSamantha;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+.modal-header {
+  margin-top: 0;
+  font-size: 4em;
+  color: #B21605;
+}
+.modal-header .points {
+  font-style: 100px;
+}
+
+
+.modal-button {
+  font-family: FMSamantha;
+  font-size: 45px;
+  border-radius: 10px;
+  background: #630000;
+  border: 3px solid #dd9a7b;
+  color: #ffffff;
+  margin-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 30px;
+  -webkit-font-smoothing: antialiased;
 }

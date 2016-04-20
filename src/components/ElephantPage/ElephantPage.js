@@ -72,7 +72,11 @@ class ElephantPage extends Component {
 
   }
   
-  handleClose = () => this.setState({isShowingModal: false})
+  handleClose() {
+    this.setState({isShowingModal: false});
+    window.location.href = '/';
+  }
+
   componentDidMount() {
 
     this.setupRealtime();
@@ -290,10 +294,9 @@ class ElephantPage extends Component {
         </div>
 
         <div className="timer">
-          <div><span className="attempts">{(this.state.attempt <= 3) ? this.state.attempt : 3 } <sup>{st[this.state.attempt-1]}</sup></span>&nbsp;&nbsp;
-            Attempt
+          <div><span className="attempts">{(this.state.attempt <= 3) ? this.state.attempt : 3 }</span> jk jdrh
           </div>
-          <div><span className="time">{this.state.remainingTime}</span>&nbsp;&nbsp;Sec</div>
+          <div>;;a' <span className="time">{this.state.remainingTime}</span></div>
           {
             /*
              <h3>{this.state.points + ' points'}</h3>
@@ -302,7 +305,7 @@ class ElephantPage extends Component {
         </div>
 
         <div className="points-box">
-          <div>Points</div>
+          <div>,l=Kq</div>
           <div className="points">
             {this.state.points}
           </div>
@@ -312,13 +315,13 @@ class ElephantPage extends Component {
           this.state.isShowingModal &&
           <ModalContainer onClose={this.handleClose}>
             <ModalDialog onClose={this.handleClose}>
-              <div className="center">
-              <h1>Dialog Content</h1>
-              <p>More Content. Anything goes here</p>
+              <div className="center modal-text">
+              <h1 className="modal-header">;r. jdrh wjika</h1>
+              <h2>Tn ,nd .;a ,l=Kq ixLHdj</h2>
               <div className="points">
                 {this.state.points}
               </div>
-              <button onClick={this.handleNextButton}> Next</button>
+              <button className="modal-button" onClick={this.handleNextButton}>,l=Kq mqjrej</button>
 
               </div>
             </ModalDialog>

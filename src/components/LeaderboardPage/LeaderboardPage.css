@@ -1,7 +1,78 @@
 body {
-    background: url("../../public/images/img-bg-leader-board.png") no-repeat center center fixed;
+    background: url("../../public/images/img-bg-leader-board.png") no-repeat top center fixed;
+    font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
+}
+
+.leaderboard {
+    position: relative;
+    width: 1024px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .leaderboard-table {
-    vertical-align: middle;
+    width: 1024px;
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 230px;
+}
+.leaderboard-table table {
+    margin-bottom: 15px !important;
+}
+.list-highlight {
+    border-bottom: 4px solid;
+    border-color: transparent;
+    background-color: rgba(0,0,0, 0.15);
+    -webkit-transform: translate(0px, 0);
+    -moz-transform: translate(0px,0);
+}
+
+.list-highlight:hover{
+    background-color: transparent !important;
+}
+
+.list-highlight td {
+    border-top:0 !important;
+    font-size: 30px;
+    padding-right: 20px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+.txt-bld {
+    font-family: "Helvetica Bold"
+}
+.txt-lft {
+    text-align: left;
+}
+.txt-rht {
+    text-align: right;
+}
+
+.btn-next {
+    width: 175px;
+    margin-bottom: 25px;
+    font-size: 25px;
+    border-radius: 10px;
+    background: #630000;
+    border: 3px solid #dd9a7b;
+    color: #ffffff;
+    font-family: FMSamantha;
+    -webkit-font-smoothing: antialiased;
+}
+
+.btn-next:hover{
+    background: #450701;
+    border: 3px solid #dd9a7b;
+}
+
+.btn-next:active{
+    background: #7F0C00;
+    border: 3px solid #dd9a7b;
+}
+
+.btn-next:focus{
+    background: #7F0C00;
+    border: 3px solid #dd9a7b;
 }

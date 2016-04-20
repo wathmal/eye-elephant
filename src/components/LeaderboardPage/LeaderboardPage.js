@@ -49,23 +49,16 @@ class LeaderboardPage extends Component {
             });
 
             return (
-                <div>
+                <div className="leaderboard">
                     <div className="leaderboard-table">
                         <table className="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>Name</th>
-                                <th>Points</th>
-                            </tr>
-                            </thead>
                             <tbody>
                             {rows}
                             </tbody>
                         </table>
                     </div>
 
-                    <button onClick={this.handleNextButton}> Next</button>
+                    <button className="btn-next" onClick={this.handleNextButton}> bÈßhg</button>
                 </div>
             );
         }

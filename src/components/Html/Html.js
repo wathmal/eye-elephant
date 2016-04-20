@@ -46,8 +46,6 @@ class Html extends Component {
 
         <script src="/konva.min.js" />
 
-        <link href="/css/style.css" rel="stylesheet" />
-
         <script src="/js/jquery.min.js"></script>
 
       </head>

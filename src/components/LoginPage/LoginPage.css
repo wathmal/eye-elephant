@@ -1,3 +1,49 @@
 body {
   background: url("../../public/images/img-bg-input-name-screen.png") no-repeat center center fixed;
 }
+
+.container.sign-in {
+  width: 580px;
+  margin-top: 500px;
+}
+
+.signin-input-name {
+  margin-bottom: 15px;
+  font-size: 45px;
+  text-align: center;
+  padding: 35px;
+  font-family: "impact";
+  color: black !important;
+  border: 3px solid #f7a01d;
+  border-radius: 10px;
+  min-height: 77px;
+}
+
+.signin-input-name:focus {
+  border: 3px solid #630000;
+}
+
+.signin-button {
+  font-family: FMSamantha;
+  font-size: 45px;
+  border-radius: 10px;
+  background: #630000;
+  border: 3px solid #dd9a7b;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.signin-button:hover{
+  background: #450701;
+  border: 3px solid #dd9a7b;
+}
+
+.signin-button:active{
+  background: #7F0C00;
+  border: 3px solid #dd9a7b;
+}
+
+.signin-button:focus{
+  background: #7F0C00;
+  border: 3px solid #dd9a7b;
+}
